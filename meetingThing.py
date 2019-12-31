@@ -1,5 +1,6 @@
 from datetime import datetime as dt
 import os
+import shutil
 class Meeting:
     def __init__(self, title, initialNotes):
         self.title = title
@@ -74,12 +75,19 @@ def loadAllMeetings():
         meetings.append(loadMeeting(fileNP))
     return meetings
 
+def resetMeetings():
+    if not os.path.exists("saves"):
+        print("saves folder not yet created, nothing to remove.")
+        return
+    for filename in os.listdir("saves"):
+        os.remove(os.path.join("saves", filename))
+
 def main():
     print("WELCOME TO DUMBASS MEETING ORGANIZER INC")
     print("loading saved meetings...")
     ms = loadAllMeetings()
     newMs = []
-    print("Welcome dumbass. (m)ake a new meeting or (r)eference old ones?")
+    print("Welcome dumbass. (m)ake a new meeting or (r)eference old ones?\nWARNING: (t) to reset all meetings.")
     inp = input()
     if inp=="m":
         meet = runNewMeeting()
@@ -108,6 +116,9 @@ def main():
         uinput = input()
         if input=="r":
             print("NOT BUILT YET")
+    elif inp=="t":
+        resetMeetings()
+        print("Meetings have been reset.")
         
 if __name__ == "__main__":
     main()
