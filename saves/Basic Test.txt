@@ -1,0 +1,5 @@
+Basic Test|||This is the most basic test.
+test
+This note is a basic test note.
+Here on out, we should have enough backwards compatibility to load this note.
+Keep this as a benchmark.
